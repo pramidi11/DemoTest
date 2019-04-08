@@ -3,6 +3,12 @@ package autoapp.automation.utility;
 import java.util.List;
 import java.util.Set;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
 
 public class BrowserDriver implements WebDriver {
 
@@ -10,74 +16,76 @@ public class BrowserDriver implements WebDriver {
     String browserName;
 
     public BrowserDriver(WebDriver driver){
-        this.driver = driver;
+        BrowserDriver.driver = driver;
     };
 
     public BrowserDriver(String browserName) {
         this.browserName = browserName;
-
-        if (browserName.equalsIgnoreCase("chrome")) {
-            System.setProperty("webdriver.chrome.driver",
-                    System.getProperty("user.dir") + "/src/test/resources/chromedriver");
-            this.driver = new ChromeDriver();
-        } else if (browserName.equalsIgnoreCase("firefox")) {
-            System.setProperty("webdriver.gecko.driver",
-                    System.getProperty("user.dir") + "/src/test/resources/geckodriver");
-            this.driver = new FirefoxDriver();
+        if (BrowserDriver.driver == null) {
+        	 if (browserName.equalsIgnoreCase("chrome")) {
+                 System.setProperty("webdriver.chrome.driver",
+                         System.getProperty("user.dir") + "/src/test/resources/chromedriver");
+                 BrowserDriver.driver = new ChromeDriver();
+             } else if (browserName.equalsIgnoreCase("firefox")) {
+                 System.setProperty("webdriver.gecko.driver",
+                         System.getProperty("user.dir") + "/src/test/resources/geckodriver");
+                 BrowserDriver.driver = new FirefoxDriver();
+             }
         }
     }
+   
 
     public void close() {
-        this.driver.close();
+        BrowserDriver.driver.close();
 
     }
 
     public WebElement findElement(By arg0) {
-        return this.driver.findElement(arg0);
+        return BrowserDriver.driver.findElement(arg0);
     }
 
     public List<WebElement> findElements(By arg0) {
-        return this.driver.findElements(arg0);
+        return BrowserDriver.driver.findElements(arg0);
     }
 
     public void get(String arg0) {
-        this.driver.get(arg0);
+        BrowserDriver.driver.get(arg0);
 
     }
 
     public String getCurrentUrl() {
-        return this.driver.getCurrentUrl();
+        return BrowserDriver.driver.getCurrentUrl();
     }
 
     public String getPageSource() {
-        return this.driver.getPageSource();
+        return BrowserDriver.driver.getPageSource();
     }
 
     public String getTitle() {
-        return this.driver.getTitle();
+        return BrowserDriver.driver.getTitle();
     }
 
     public String getWindowHandle() {
-        return this.driver.getWindowHandle();
+        return BrowserDriver.driver.getWindowHandle();
     }
 
     public Set<String> getWindowHandles() {
-        return this.driver.getWindowHandles();
+        return BrowserDriver.driver.getWindowHandles();
     }
 
     public Options manage() {
-        return this.driver.manage();
+        return BrowserDriver.driver.manage();
     }
 
     public Navigation navigate() {
-        return this.driver.navigate();
+        return BrowserDriver.driver.navigate();
     }
 
     public void quit() {
-        this.driver.quit();
+        BrowserDriver.driver.quit();
     }
 
     public TargetLocator switchTo() {
-        return this.driver.switchTo();
+        return BrowserDriver.driver.switchTo();
     }
 }

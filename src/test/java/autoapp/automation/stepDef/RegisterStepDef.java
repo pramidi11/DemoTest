@@ -1,4 +1,6 @@
-package autoapp.automation.stepDef;
+	package autoapp.automation.stepDef;
+
+import org.junit.Assert;
 
 import autoapp.automation.pages.InfoPage;
 import autoapp.automation.pages.RegisterPage;
@@ -33,4 +35,13 @@ public class RegisterStepDef {
         InfoPage.enterPersonalInformation(dataTable);
         Thread.sleep(5000);
     }
+    
+    @Then("^I should see the error message \"([^\"]*)\"$")
+    public void I_should_see_the_error_message(String errorMessage) throws Throwable {
+    	String actualMsg = RegisterPage.invalidEmailMsgTxt();
+    	//String actualMsg = RegisterPage.invalidEmailMsg(); - Page-Object model call
+    	System.out.println("Actual Msg: "+actualMsg);
+        Assert.assertEquals(errorMessage,actualMsg);
+    }
+    
 }

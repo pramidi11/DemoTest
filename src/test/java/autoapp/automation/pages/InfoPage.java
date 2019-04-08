@@ -10,6 +10,16 @@ import java.util.Map;
 
 public class InfoPage extends BasePage{
 
+	public InfoPage(BrowserDriver driver) {
+		super(driver);
+		// TODO Auto-generated constructor stub
+	}
 
-    }
+	public static void enterPersonalInformation(DataTable dataTable) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }
+

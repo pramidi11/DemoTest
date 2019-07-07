@@ -1,7 +1,19 @@
 package autoapp.automation.utility;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 
 public class BrowserDriver implements WebDriver {
@@ -25,6 +37,7 @@ public class BrowserDriver implements WebDriver {
                     System.getProperty("user.dir") + "/src/test/resources/geckodriver");
             this.driver = new FirefoxDriver();
         }
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public void close() {
@@ -79,5 +92,70 @@ public class BrowserDriver implements WebDriver {
 
     public TargetLocator switchTo() {
         return this.driver.switchTo();
+    }
+    public static WebElement waitAndClick(WebDriver driver, WebElement element)
+    {
+        try{
+            WebDriverWait wait = new WebDriverWait(driver, 30);
+            wait.ignoring(NoSuchElementException.class)
+                    .until(ExpectedConditions.elementToBeClickable(element));
+            element.click();
+            return element;
+        }
+        catch(Exception e)
+        {
+            throw  e;
+        }
+    }
+    public static WebElement waitUntilElementIsVisible(WebDriver driver,WebElement element)
+    {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 15);
+            wait.ignoring(NoSuchElementException.class)
+                    .until(ExpectedConditions.visibilityOf(element));
+            return element;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            throw  e;
+        }
+    }
+    public static WebElement waitAndSendKeys(WebDriver driver, WebElement element, String text) {
+        try{
+            waitUntilElementIsVisible(driver,element);
+            element.clear();
+            element.sendKeys(text);
+            return element;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            throw  e;
+        }
+    }
+
+    public static void selectDropdown(WebDriver driver, WebElement dropDownBox, String value)
+    {
+        try
+        {
+            Select se1ect1 = new Select(dropDownBox);
+            se1ect1.selectByVisibleText(value);
+        }
+        catch(Exception e)
+        {
+            throw e;
+        }
+    }
+
+    public static String getPageTitle(){
+            return driver.getTitle();
+    }
+
+    public static void hover_On_Element(WebDriver driver, WebElement element) {
+            waitUntilElementIsVisible(driver,element);
+            Actions actions = new Actions(driver);
+            actions.moveToElement(element).build().perform();
+
     }
 }

@@ -33,6 +33,5 @@ public class RegisterStepDef {
     @Then("^I should be getting an error message displayed$")
     public void i_should_be_getting_an_error_message_displayed() throws Throwable {
         RegisterPage.errorMessageDisplayed();
-        Thread.sleep(5000);
     }
 }

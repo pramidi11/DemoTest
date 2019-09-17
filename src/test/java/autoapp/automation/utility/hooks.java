@@ -7,18 +7,18 @@ public class hooks {
     public static BrowserDriver driver;
 
     @Before
-    public void setUp(){
-        String browserName = getParameter("browser");
+    public static void setUp(){
+        String browserName = "chrome";
         System.out.println("driver "+ browserName +"");
         driver = new BrowserDriver(browserName);
     }
 
-    @After
+  @After
     public void tearDown(){
         driver.close();
     }
 
-    private String getParameter(String name) {
+    private static String getParameter(String name) {
         String value = System.getProperty(name);
         if (value == null)
             throw new RuntimeException(name + " is not a parameter!");

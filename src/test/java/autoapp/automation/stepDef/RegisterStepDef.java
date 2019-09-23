@@ -1,6 +1,6 @@
 package autoapp.automation.stepDef;
 
-import autoapp.automation.pages.InfoPage;
+//import autoapp.automation.pages.InfoPage;
 import autoapp.automation.pages.RegisterPage;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
@@ -30,7 +30,7 @@ public class RegisterStepDef {
 
     @Then("^I should be able to register with my below details$")
     public void i_should_be_able_to_register_with_my_below_details(DataTable dataTable) throws Throwable {
-        InfoPage.enterPersonalInformation(dataTable);
+        //InfoPage.enterPersonalInformation(dataTable);
         Thread.sleep(5000);
     }
 }

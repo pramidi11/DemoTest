@@ -15,4 +15,8 @@ public class BasePage extends BrowserDriver{
 		Random r = new Random();
 		return r.nextInt((max - min) + 1) + min;
 	}
+	public static void openApplicaiton() {
+		driver.navigate().to("http://automationpractice.com/index.php");
+		driver.manage().window().maximize();
+	}
 }

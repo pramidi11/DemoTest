@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 public class InfoPage extends BasePage{
+    public InfoPage(BrowserDriver driver) {
+        super(driver);
 
 
     }

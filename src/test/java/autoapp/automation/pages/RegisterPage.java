@@ -2,21 +2,18 @@ package autoapp.automation.pages;
 
 import autoapp.automation.utility.BrowserDriver;
 import org.openqa.selenium.By;
-
+import static org.junit.Assert.assertTrue;
+import autoapp.automation.utility.Helper;
 
 public class RegisterPage extends BasePage{
 
     public static String signIn_xpath = "//a[@title='Log in to your customer account']";
     public static String email_id = "email_create";
     public static String createAccount_xpath = "//form[@id='create-account_form']//span[1]";
+    public static String error_id = "create_account_error";
 
     public RegisterPage(BrowserDriver driver) {
         super(driver);
-    }
-
-    public static void openApplicaiton() {
-        driver.navigate().to("http://automationpractice.com/index.php");
-        driver.manage().window().maximize();
     }
 
     public static void clickSignIn() {
@@ -28,4 +25,9 @@ public class RegisterPage extends BasePage{
         driver.findElement(By.id(email_id)).sendKeys(emailid);
         driver.findElement(By.xpath(createAccount_xpath)).click();
     }
+
+    public static void errorMessageDisplayed() {
+        assertTrue("The error message is missing", Helper.isPresent(driver, By.id(error_id)));
+    }
+
 }

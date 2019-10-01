@@ -4,18 +4,19 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
 public class hooks {
+	//private static boolean initialized = false;
     public static BrowserDriver driver;
 
     @Before
     public void setUp(){
-        String browserName = getParameter("browser");
+        String browserName = "chrome";//getParameter("browser");
         System.out.println("driver "+ browserName +"");
-        driver = new BrowserDriver(browserName);
+            driver = new BrowserDriver(browserName);
     }
 
     @After
     public void tearDown(){
-        driver.close();
+        driver.quit();
     }
 
     private String getParameter(String name) {

@@ -3,28 +3,37 @@ package autoapp.automation.utility;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
-public class hooks {
+public class Hooks {
     public static BrowserDriver driver;
 
     @Before
     public void setUp(){
-        String browserName = getParameter("browser");
-        System.out.println("driver "+ browserName +"");
+        String browserName;
+        try {
+            browserName = getParameter("browser");
+        } catch(NoSuchFieldException e) {
+            browserName = "chrome";
+//            browserName = "firefox";
+            System.out.println("No browser property found, defaulting to " + browserName);
+        }
+        System.out.println("driver " + browserName + "");
         driver = new BrowserDriver(browserName);
     }
 
     @After
     public void tearDown(){
-        driver.close();
+        if(driver != null) {
+            driver.close();
+        }
     }
 
-    private String getParameter(String name) {
+    private String getParameter(String name) throws NoSuchFieldException {
         String value = System.getProperty(name);
         if (value == null)
-            throw new RuntimeException(name + " is not a parameter!");
+            throw new NoSuchFieldException(name + " is not a parameter!");
 
         if (value.isEmpty())
-            throw new RuntimeException(name + " is empty!");
+            throw new NoSuchFieldException(name + " is empty!");
 
         return value;
     }

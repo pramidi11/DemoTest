@@ -1,8 +1,17 @@
 package autoapp.automation.utility;
 
+/*
+    Symbols cannot be found without the below imports
+*/
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+
 import java.util.List;
 import java.util.Set;
-
 
 public class BrowserDriver implements WebDriver {
 
@@ -11,7 +20,7 @@ public class BrowserDriver implements WebDriver {
 
     public BrowserDriver(WebDriver driver){
         this.driver = driver;
-    };
+    }
 
     public BrowserDriver(String browserName) {
         this.browserName = browserName;
@@ -19,17 +28,25 @@ public class BrowserDriver implements WebDriver {
         if (browserName.equalsIgnoreCase("chrome")) {
             System.setProperty("webdriver.chrome.driver",
                     System.getProperty("user.dir") + "/src/test/resources/chromedriver");
+            // Use the below if running in Windows
+//            System.setProperty("webdriver.chrome.driver",
+//                    System.getProperty("user.dir") + "/src/test/resources/chromedriver.exe");
             this.driver = new ChromeDriver();
         } else if (browserName.equalsIgnoreCase("firefox")) {
             System.setProperty("webdriver.gecko.driver",
                     System.getProperty("user.dir") + "/src/test/resources/geckodriver");
+            // Use the below if running in Windows
+//            System.setProperty("webdriver.gecko.driver",
+//                    System.getProperty("user.dir") + "/src/test/resources/geckodriver.exe");
             this.driver = new FirefoxDriver();
+        } else {
+            System.out.println("Unrecognised browser '" + browserName + "'");
+            quit();
         }
     }
 
     public void close() {
         this.driver.close();
-
     }
 
     public WebElement findElement(By arg0) {
@@ -42,7 +59,6 @@ public class BrowserDriver implements WebDriver {
 
     public void get(String arg0) {
         this.driver.get(arg0);
-
     }
 
     public String getCurrentUrl() {
@@ -80,4 +96,5 @@ public class BrowserDriver implements WebDriver {
     public TargetLocator switchTo() {
         return this.driver.switchTo();
     }
+
 }

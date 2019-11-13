@@ -11,3 +11,16 @@ Site URL: http://automationpractice.com/
 
 Once you finish assignment,
 raise pull request to merge your changes to DEMO. 
+
+**Steven Yip**
+- Requirements 1 and 3 implemented. In implementing #3, the 2nd requirement was also addressed anyway.
+- Apologies in advances, I developed this on a Windows 10 platform so some of the imports and inclusions may not work on another platform/OS. I developed the tests primarily with ChromeDriver 77.0.3865.40, x86 version, from https://chromedriver.chromium.org/downloads, and later verified they work on geckodriver v0.29.
+- At first I tried to use JDK 11.0.5, but upon running the test I enountered the following showstopper:
+```
+WARNING: An illegal reflective access operation has occurred  
+WARNING: Illegal reflective access by cucumber.deps.com.thoughtworks.xstream.core.util.Fields (file:/C:/Users/Telstra%20User/.m2/repository/info/cukes/cucumber-jvm-deps/1.0.5/cucumber-jvm-deps-1.0.5.jar) to field java.util.TreeMap.comparator  
+WARNING: Please consider reporting this to the maintainers of cucumber.deps.com.thoughtworks.xstream.core.util.Fields  
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations  
+WARNING: All illegal access operations will be denied in a future release  
+```
+- The quick fix was to use JDK 1.8 instead, as per https://backstage.forgerock.com/knowledge/kb/article/a15048811

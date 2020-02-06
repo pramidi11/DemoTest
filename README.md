@@ -9,8 +9,7 @@ Site URL: http://automationpractice.com/
 2.	Check whether Megamenu works (Dresses -> Summer dresses)
 3.	On the Summer dresses page, select a dress(Quick view) and change the color (Blue) and then add the item to cart, Validate	whether same product name, color and quantity are displayed in Cart Summary page.
 
-Once you finish assignment,
-raise pull request to merge your changes to DEMO. 
+Complete your assignment in your branch 
 
 **Steven Yip**
 - Requirements 1 and 3 implemented. In implementing #3, the 2nd requirement was also addressed anyway.

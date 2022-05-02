@@ -1,4 +1,4 @@
-# UITestsBelong
+# UITests
 
 ***Please branch out from DEMO and start assignment***
 Write feature file , step definitions and if possible pages for any of the below two requirements 
